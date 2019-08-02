@@ -1,0 +1,7 @@
+.side-bar-container{
+  .group-cell {
+    @include cell($brand-primary);
+    @include montserrat-regular;
+    color: black;
+  }
+}

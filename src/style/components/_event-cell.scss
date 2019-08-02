@@ -1,0 +1,25 @@
+.event-cell {
+  max-width: 400px;
+  margin: 10px;
+  ul {
+    list-style-type: none;
+  }
+  .ant-card-body{
+    @include montserrat-regular;
+  }
+  .read-more {
+    transition: max-height 500ms ease-in-out;
+    cursor: pointer;
+    color: $brand-primary;
+    &.closed{
+      max-height: 4em;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    &.open{
+      max-height: 2000em;
+
+    }
+  }
+}

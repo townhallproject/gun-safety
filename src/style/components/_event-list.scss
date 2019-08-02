@@ -1,0 +1,43 @@
+.ant-card-head{
+  background-color: $brand-primary;
+}
+
+#events-list {
+  .no-results{
+    margin-top: 50%;
+  }
+  .ant-card-head-title {
+    color: $main-white;
+  }
+
+  .ant-list-items {
+    padding: 0 10px;
+  }
+
+  .rsvp-button {
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color:  $main-white;
+    @include montserrat-bold-all-caps;
+  }
+  .ant-card-head {
+    background-color: $brand-primary;
+  }
+
+  .town-hall, .town-hall-icon {
+    @include cell($town-hall);
+  }
+
+  .dark-green, .dark-green-icon {
+    @include cell($dark-green);
+  }
+  .dark-purple, .dark-purple-icon {
+    @include cell($dark-purple);
+  }
+  .dark-orange, .dark-orange-icon {
+    @include cell($dark-orange);
+  }
+  .circle-stroked-15-grey {
+    @include cell($brand-primary);
+  }
+}
