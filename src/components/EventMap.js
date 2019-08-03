@@ -16,6 +16,7 @@ import L from '../utils/leaflet-ajax/src';
 import MapInset from '../components/MapInset';
 import { startSetEvents } from '../state/events/actions';
 
+const hasEventsColor = '#5fbae8';
 const maxBounds = [
   [24, -128], // Southwest
   [50, -60.885444], // Northeast
@@ -87,7 +88,7 @@ class MapView extends React.Component {
         9.52 - (distance * (4.7 / 450)),
       );
     }
-    return this.zoomToNational()
+    return this.zoomToNational();
   }
 
   filterForStateInsets(items) {
@@ -188,7 +189,7 @@ class MapView extends React.Component {
       const { properties } = state;
       return {
         color: hasEvents(properties.ABR) ? '#fff' : '#fff',
-        fillColor: hasEvents(properties.ABR) ? '#6e00ff' : 'transparent',
+        fillColor: hasEvents(properties.ABR) ? hasEventsColor : 'transparent',
         fillOpacity: 1,
         opacity: 1,
         weight: hasEvents(properties.ABR) ? 2 : 0.5,
@@ -211,7 +212,7 @@ class MapView extends React.Component {
       const { properties } = state;
       return {
         color: hasEvents(properties.ABR) ? '#fff' : '#fff',
-        fillColor: hasEvents(properties.ABR) ? '#6e00ff' : 'transparent',
+        fillColor: hasEvents(properties.ABR) ? hasEventsColor : 'transparent',
         fillOpacity: 1,
         opacity: 1,
         weight: hasEvents(properties.ABR) ? 2 : 0.5,
@@ -248,6 +249,7 @@ class MapView extends React.Component {
       pointToLayer(geoJsonPoint, latlng) {
         return L.marker(latlng, {
           icon: myIcon,
+          offset: L.point(0, 300),
         }).bindTooltip(showTooltip(geoJsonPoint)).openTooltip();
       },
       style(feature) {
@@ -342,7 +344,7 @@ class MapView extends React.Component {
       <React.Fragment>
         <div id="map" className={this.state.popoverColor} ref={(ref) => { this.mapContainer = ref; }}>
           <div className="map-overlay" id="legend">
-            <MapInset
+            {/* <MapInset
               items={this.state.alaskaItems}
               selectedUsState={selectedUsState}
               center={center}
@@ -354,10 +356,11 @@ class MapView extends React.Component {
               setLatLng={setLatLng}
               distance={distance}
               searchType={searchType}
+              fillColor={hasEventsColor}
               mapId="map-overlay-alaska"
               bounds={[[-170.15625, 51.72702815704774], [-127.61718749999999, 71.85622888185527]]}
-            />
-            <MapInset
+            /> */}
+            {/* <MapInset
               items={this.state.hawaiiItems}
               selectedUsState={selectedUsState}
               stateName="HI"
@@ -370,11 +373,12 @@ class MapView extends React.Component {
               distance={distance}
               searchType={searchType}
               searchByQueryString={searchByQueryString}
+              fillColor={hasEventsColor}
               mapId="map-overlay-hawaii"
               bounds={[
                 [-161.03759765625, 18.542116654448996],
                 [-154.22607421875, 22.573438264572406]]}
-            />
+            /> */}
           </div>
         </div>
 

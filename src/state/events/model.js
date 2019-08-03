@@ -10,6 +10,7 @@ export default class TownHall {
     this.lat = props.lat;
     this.lng = props.lng;
     this.eventName = props.eventName;
+    this.meetingType = props.meetingType;
     this.Location = props.Location;
     this.dateObj = props.dateObj;
     this.state = props.state;

@@ -2,4 +2,7 @@
   position: relative;
   display: flex;
   flex-flow: row wrap;
+  h1 {
+    margin-bottom: 0;
+  }
 }

@@ -1,11 +1,17 @@
 .event-cell {
   max-width: 400px;
   margin: 10px;
+  display: flex;
   ul {
     list-style-type: none;
   }
+  .ant-card-head {
+    border-bottom: 1px solid $brand-primary;
+    min-width: 140px;
+    border-radius: 2px 0 0 2px;
+  }
   .ant-card-body{
-    @include montserrat-regular;
+    @include roboto-regular;
   }
   .read-more {
     transition: max-height 500ms ease-in-out;

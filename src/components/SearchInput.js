@@ -28,14 +28,16 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <Row type="flex" align="middle">
-        <Col>
-          <h6 style={{ display: 'inline', marginRight: 8 }}>Find an event near you:</h6>
+      <Row type="flex" align="middle" justify="space-around">
+        <Col span={12}>
+          <h1 className="bold">Find an event with your representatives</h1><h2>and tell them why gun safety matters to you:</h2>
         </Col>
-        <Search
-          placeholder="zipcode or state"
-          onSearch={value => this.handleSubmit(value)}
-        />
+        <Col span={8}>
+          <Search
+            placeholder="zipcode or state"
+            onSearch={value => this.handleSubmit(value)}
+          />
+        </Col>
       </Row>
     );
   }

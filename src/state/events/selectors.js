@@ -10,12 +10,12 @@ import {
 } from '../selections/selectors';
 
 export const getEvents = state => state.events.allEvents;
-export const getCurrentCandidateNames = createSelector([getEvents], events => uniqBy(events, 'displayName').map(item => item.displayName));
+export const getCurrentCandidateNames = createSelector([getEvents], events => uniqBy(events, 'meetingType').map(item => item.meetingType));
 
 export const getEventsFilteredByCandidateArray = createSelector(
   [getEvents, getSelectedNames],
   (allEvents, namesToInclude) => {
-    return filter(allEvents, o => includes(namesToInclude, o.displayName));
+    return filter(allEvents, o => includes(namesToInclude, o.meetingType));
   },
 );
 

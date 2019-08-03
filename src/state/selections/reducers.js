@@ -50,8 +50,8 @@ const userSelectionsReducer = (state = initialState, { type, payload }) => {
     case 'SET_INITIAL_FILTERS':
       return {
         ...state,
-        selectedNames: uniqBy(payload.events, 'displayName')
-          .map(item => item.displayName),
+        selectedNames: uniqBy(payload.events, 'meetingType')
+          .map(item => item.meetingType),
       };
     default:
       return state;

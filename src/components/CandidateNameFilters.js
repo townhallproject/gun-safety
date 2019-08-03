@@ -9,7 +9,7 @@ require('style-loader!css-loader!antd/es/tag/style/index.css');
 /* eslint-enable */
 
 
-class CandidateNameFilters extends React.Component {
+class EventTypeFilters extends React.Component {
   constructor(props) {
     super(props);
     const { selectedNames } = this.props;
@@ -49,7 +49,7 @@ class CandidateNameFilters extends React.Component {
 
     return (
       <div>
-        <h6 style={{ display: 'inline', marginRight: 8 }}>Filter by candidate with upcoming events:</h6>
+        <h6 style={{ display: 'inline', marginRight: 8 }}>Filter by event type:</h6>
         {names.map(tag => (
           <CheckableTag
             key={tag}
@@ -66,10 +66,10 @@ class CandidateNameFilters extends React.Component {
   }
 }
 
-CandidateNameFilters.propTypes = {
+EventTypeFilters.propTypes = {
   names: PropTypes.arrayOf(PropTypes.string).isRequired,
   onFilterChanged: PropTypes.func.isRequired,
   selectedNames: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default CandidateNameFilters;
+export default EventTypeFilters;

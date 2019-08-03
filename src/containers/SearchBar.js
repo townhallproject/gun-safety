@@ -115,9 +115,9 @@ class SearchBar extends React.Component {
               submitHandler={this.searchHandler}
             />
           </Col>
-          <Col>
+          {/* <Col>
             {this.renderFilterBar()}
-          </Col>
+          </Col> */}
         </Row>
         {/* <DistanceFilter
           changeHandler={this.distanceHandler}

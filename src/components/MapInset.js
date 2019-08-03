@@ -54,16 +54,36 @@ class MapInset extends React.Component {
     const { type } = this.props;
 
     featuresHome.features = items.map((indEvent) => {
-      let colorObject = {
-          ...indEvent,
-          color: '#1cb7ec',
-          filterBy: false,
-          icon: 'circle-15-blue',
-        };
+      const colorObject = {
+        ...indEvent,
+        color: '#1cb7ec',
+        filterBy: false,
+        icon: 'circle-15-blue',
+      };
       const newFeature = new Point(colorObject);
       return newFeature;
     });
     return featuresHome;
+  }
+
+  updateColorStyle(items) {
+    function hasEvents(state) {
+      return find(items, item => item.state === state);
+    }
+
+    function setStateStyle(state) {
+      const {
+        properties,
+      } = state;
+      return {
+        color: hasEvents(properties.ABR) ? '#fff' : '#fff',
+        fillColor: hasEvents(properties.ABR) ? hasEventsColor : 'transparent',
+        fillOpacity: 1,
+        opacity: 1,
+        weight: hasEvents(properties.ABR) ? 2 : 0.5,
+      };
+    }
+    this.stateColorLayer.setStyle(setStateStyle);
   }
 
   districtSelect(feature) {
@@ -204,7 +224,7 @@ class MapInset extends React.Component {
       zoomControl: false,
     });
     this.map.fitBounds(bounds);
-    console.log(bounds)
+    console.log(bounds);
     this.stateLayer = new L.GeoJSON.AJAX('data/states.geojson', {
       style(state) {
         return setStyle(state);
