@@ -30,7 +30,7 @@ class SearchBar extends React.Component {
     return (
       <Row type="flex" align="middle" justify="space-around">
         <Col span={12}>
-          <h1 className="bold">Find an event with your representatives</h1><h2>and tell them why gun safety matters to you:</h2>
+          <h1 className="bold">Find an event with your representatives</h1><h2 className="sub-title">and tell them why gun safety matters to you:</h2>
         </Col>
         <Col span={8}>
           <Search

@@ -9,20 +9,20 @@ $hbase:3em;
 
 @mixin montserrat-semi-bold{
   font-weight: 600;
-  font-family: 'Oswald';
+  font-family: 'Oswald', sans-serif;
 }
 
 @mixin montserrat-bold {
   font-weight: 900;
-  font-family: 'Oswald';
+  font-family: 'Oswald', sans-serif;
 }
 
 @mixin roboto-regular {
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
 }
 
 @mixin montserrat-bold-all-caps {
-  font-family: 'Oswald';
+  font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
   font-weight: 900;
 }

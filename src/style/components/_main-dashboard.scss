@@ -2,7 +2,22 @@
   position: relative;
   display: flex;
   flex-flow: row wrap;
+  .header {
+    padding: 20px;
+    width: 100%;
+    h3 {
+      font-size: 2em;
+      margin: 0;
+      text-transform: uppercase;
+      font-family: 'Oswald';
+      color: $brand-secondary;
+    }
+  }
   h1 {
-    margin-bottom: 0;
+    margin-bottom: 20px;
+    color: #1b2455;
+  }
+  .sub-title {
+    color: $brand-primary;
   }
 }

@@ -43,7 +43,7 @@ class TableCell extends React.Component {
       <Card
         className={`event-cell ${iconName}`}
         key={`${item.id}`}
-        title={item.displayName}
+        title={[item.displayName, <div>{item.state}-{Number(item.district)}</div>]}
       >
         <ul>
           {item.eventName}

@@ -9,6 +9,10 @@
   position: relative;
 }
 
+.leaflet-popup.leaflet-zoom-animated {
+  bottom: -55px!important;
+}
+
 .ant-alert.ant-alert-warning.ant-alert-with-description{
   flex: 1 100%;
 }

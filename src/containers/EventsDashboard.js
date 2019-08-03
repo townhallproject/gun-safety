@@ -1,4 +1,6 @@
 /* globals location */
+import { Layout, Row, Col } from 'antd';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -22,6 +24,17 @@ import MapView from '../components/EventMap';
 
 import SearchBar from './SearchBar';
 import SideBar from './SideBar';
+
+const {
+  Header,
+  Content,
+  Footer,
+} = Layout;
+
+/* eslint-disable */
+require('style-loader!css-loader!antd/es/menu/style/index.css');
+require('style-loader!css-loader!antd/es/layout/style/index.css');
+/* eslint-enable */
 
 class EventsDashboard extends React.Component {
   constructor(props) {
@@ -112,15 +125,26 @@ class EventsDashboard extends React.Component {
     }
     return (
       <div className="events-container main-container">
-        <h2 className="dash-title">Event Dashboard</h2>
+        <Row className="header" type="flex" justify="space-between" align="middle">
+          <Col><h3 style={{display: "inline-block"}}>Stand Up for Safer Gun Laws</h3></Col>
+          <Col>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://docs.google.com/document/d/1Go1GsYldM9iRLzpvQP1GZVjRXBjJ7Qcm8Xk_ku86lEQ/edit#"
+            >Learn more at the Gun Violence Recess Toolkit
+            </a>
+          </Col>
+        </Row>
         <SearchBar mapType="event" />
+        {this.renderMap()}
         <SideBar
           items={eventsNearSearchLocation}
           type="events"
           resetSelections={resetSelections}
           location={center}
         />
-        {this.renderMap()}
+
         <div className="footer" />
       </div>
 

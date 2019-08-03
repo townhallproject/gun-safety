@@ -1,8 +1,9 @@
 import moment from 'moment';
+import {includes,} from 'lodash';
 
 import getData from '../../logics/getData';
 
-import { firebaseUrl } from '../constants';
+import { firebaseUrl, districtsToInclude } from '../constants';
 
 import TownHall from './model';
 
@@ -16,10 +17,14 @@ export const setFeaturesHome = featuresHome => ({
   type: 'SET_FEATURES_HOME',
 });
 
-const include = (meetingType, iconFlag) => {
-  if (iconFlag === 'in-person') {
-    return meetingType !== 'DC Event';
+const include = (event) => {
+  if (!includes(districtsToInclude, `${event.state}-${Number(event.district)}`)) {
+    return false;
   }
+  if (event.iconFlag === 'in-person') {
+    return event.meetingType !== 'DC Event';
+  }
+  return false;
 };
 
 export const startSetEvents = () => (dispatch) => {
@@ -28,7 +33,7 @@ export const startSetEvents = () => (dispatch) => {
     const allevents = result.body;
     const events = Object.keys(allevents)
       .map(id => new TownHall(allevents[id]))
-      .filter(event => include(event.meetingType, event.iconFlag))
+      .filter(event => include(event))
       .sort((a, b) => ((moment(a.dateObj).isSameOrAfter(moment(b.dateObj))) ? 1 : -1));
     return (dispatch(setEvents(events)));
   });

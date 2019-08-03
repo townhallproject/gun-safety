@@ -16,13 +16,13 @@ import L from '../utils/leaflet-ajax/src';
 import MapInset from '../components/MapInset';
 import { startSetEvents } from '../state/events/actions';
 
-const hasEventsColor = '#5fbae8';
+const hasEventsColor = '#1b2455';
 const maxBounds = [
   [24, -128], // Southwest
   [50, -60.885444], // Northeast
 ];
 
-const usBB = [24, -128, 50, -60.885444]
+const usBB = [24, -128, 50, -60.885444];
 
 class MapView extends React.Component {
   constructor(props) {
@@ -119,14 +119,8 @@ class MapView extends React.Component {
   continentalView() {
     const w = this.mapContainer.clientWidth;
     const h = this.mapContainer.clientHeight;
-    // if (stateCoords) {
-    //   return geoViewport.viewport(stateCoords, [w, h]);
-    // } else {
-    // return geoViewport.viewport([-123.719174, 32.528832, -66.885444, 47.459854], [w, h]);
     return geoViewport.viewport([maxBounds[0][1], maxBounds[0][0], maxBounds[1][1], maxBounds[1][0]], [w, h]);
-
-    // }
-  };
+  }
 
   insetOnClickEvent(e) {
     this.setState({ inset: false });
@@ -181,44 +175,30 @@ class MapView extends React.Component {
   }
 
   addColorLayer(items) {
-    function hasEvents(state) {
-      return find(items, item => item.state === state);
+    function hasEvents(district) {
+      return find(items, item => {
+        return `${item.state}-${Number(item.district)}` === district;
+      })
     }
 
-    function setStateStyle(state) {
+    function setDistrictStyle(state) {
       const { properties } = state;
+      const district = Number(properties.GEOID.substring(2));
       return {
-        color: hasEvents(properties.ABR) ? '#fff' : '#fff',
-        fillColor: hasEvents(properties.ABR) ? hasEventsColor : 'transparent',
+        color: hasEvents(`${properties.ABR}-${district}`) ? '#fff' : 'transparent',
+        fillColor: hasEvents(`${properties.ABR}-${district}`) ? hasEventsColor : 'transparent',
         fillOpacity: 1,
         opacity: 1,
-        weight: hasEvents(properties.ABR) ? 2 : 0.5,
+        weight: hasEvents(`${properties.ABR}-${district}`) ? 2 : 0,
       };
     }
 
-    this.stateColorLayer = new L.GeoJSON.AJAX('data/states.geojson', {
+    this.stateColorLayer = new L.GeoJSON.AJAX('data/districts.geojson', {
       style(state) {
-        return setStateStyle(state);
+        return setDistrictStyle(state);
       },
     });
     this.stateColorLayer.addTo(this.map);
-  }
-
-  updateColorStyle(items) {
-    function hasEvents(state) {
-      return find(items, item => item.state === state);
-    }
-    function setStateStyle(state) {
-      const { properties } = state;
-      return {
-        color: hasEvents(properties.ABR) ? '#fff' : '#fff',
-        fillColor: hasEvents(properties.ABR) ? hasEventsColor : 'transparent',
-        fillOpacity: 1,
-        opacity: 1,
-        weight: hasEvents(properties.ABR) ? 2 : 0.5,
-      };
-    }
-    this.stateColorLayer.setStyle(setStateStyle);
   }
 
   addLayer(featuresHome) {
@@ -230,13 +210,14 @@ class MapView extends React.Component {
     });
     // Set map controls
     function showTooltip({ properties }) {
+      console.log(properties)
       const eventInfo = properties;
       return `<div class="text-info map-popup">
                 <h4 class="mapbox-popup-title">
-                  </span>${eventInfo.displayName}</h4>
-                ${eventInfo.venue ? `<p>${eventInfo.venue}</p>` : ''}
+                  </span>${eventInfo.displayName} (${eventInfo.state}-${Number(eventInfo.district)})</h4>
+                    ${eventInfo.venue ? `<p>${eventInfo.venue}</p>` : ''}
                 <span>
-                  ${eventInfo.repeatingEvent ? `on ${eventInfo.repeatingEvent}` : `${eventInfo.time ? `on ${eventInfo.date} at ${eventInfo.time}` : ''}`}
+                  ${eventInfo.repeatingEvent ? `${eventInfo.repeatingEvent}` : `${eventInfo.time ? `${eventInfo.date} at ${eventInfo.time}` : ''}`}
                 </span><br>
                   ${eventInfo.addressLink ?
     `<span><a href="${eventInfo.addressLink}" target="_blank">${eventInfo.address}</a></span>` :
@@ -249,8 +230,7 @@ class MapView extends React.Component {
       pointToLayer(geoJsonPoint, latlng) {
         return L.marker(latlng, {
           icon: myIcon,
-          offset: L.point(0, 300),
-        }).bindTooltip(showTooltip(geoJsonPoint)).openTooltip();
+        }).bindPopup(showTooltip(geoJsonPoint)).openPopup();
       },
       style(feature) {
         return {
@@ -297,7 +277,7 @@ class MapView extends React.Component {
 
     function setStyle() {
       return {
-        color: '#fff',
+        color: '#f6f4f4',
         fillColor: '#e9ebee',
         fillOpacity: 1,
         opacity: 1,
@@ -311,75 +291,28 @@ class MapView extends React.Component {
       attributionControl: false,
       center: [center[1], center[0]],
       zoomControl: true,
+      scrollWheelZoom: false,
     });
     this.map.fitBounds(maxBounds);
     this.makeZoomToNationalButton();
     this.resizeListener();
-    this.stateLayer = new L.GeoJSON.AJAX('data/states.geojson', {
+    this.stateLayer = new L.GeoJSON.AJAX('data/districts.geojson', {
       style(state) {
         return setStyle(state);
       },
     });
 
-    this.stateLayer.addTo(this.map);
+    this.stateLayer.addTo(this.map).bringToBack();
     this.addColorLayer(items);
     this.addLayer(featuresHome);
   }
 
   render() {
-    const {
-      center,
-      district,
-      type,
-      resetSelections,
-      refcode,
-      setLatLng,
-      distance,
-      searchType,
-      searchByQueryString,
-      selectedUsState,
-    } = this.props;
 
     return (
       <React.Fragment>
         <div id="map" className={this.state.popoverColor} ref={(ref) => { this.mapContainer = ref; }}>
-          <div className="map-overlay" id="legend">
-            {/* <MapInset
-              items={this.state.alaskaItems}
-              selectedUsState={selectedUsState}
-              center={center}
-              stateName="AK"
-              district={district}
-              type={type}
-              resetSelections={resetSelections}
-              refcode={refcode}
-              setLatLng={setLatLng}
-              distance={distance}
-              searchType={searchType}
-              fillColor={hasEventsColor}
-              mapId="map-overlay-alaska"
-              bounds={[[-170.15625, 51.72702815704774], [-127.61718749999999, 71.85622888185527]]}
-            /> */}
-            {/* <MapInset
-              items={this.state.hawaiiItems}
-              selectedUsState={selectedUsState}
-              stateName="HI"
-              center={center}
-              district={district}
-              type={type}
-              resetSelections={resetSelections}
-              refcode={refcode}
-              setLatLng={setLatLng}
-              distance={distance}
-              searchType={searchType}
-              searchByQueryString={searchByQueryString}
-              fillColor={hasEventsColor}
-              mapId="map-overlay-hawaii"
-              bounds={[
-                [-161.03759765625, 18.542116654448996],
-                [-154.22607421875, 22.573438264572406]]}
-            /> */}
-          </div>
+          <div className="map-overlay" id="legend" />
         </div>
 
       </React.Fragment>

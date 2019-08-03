@@ -15,5 +15,6 @@ export default class TownHall {
     this.dateObj = props.dateObj;
     this.state = props.state;
     this.url = props.link;
+    this.district = props.district;
   }
 }
