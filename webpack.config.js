@@ -2,9 +2,9 @@ require('dotenv').config();
 
 // Dynamic Script and Style Tags
 const HTMLPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
-// Makes a separate CSS bundle
-const ExtractPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -12,11 +12,14 @@ const { EnvironmentPlugin, DefinePlugin } = require('webpack');
 
 const production = process.NODE_ENV;
 
-const plugins = [
+const basePlugins = [
   new HTMLPlugin({
     template: `${__dirname}/src/index.html`,
   }),
-  new ExtractPlugin('bundle.[hash].css'),
+  new MiniCssExtractPlugin({
+    chunkFilename: '[id].css',
+    filename: '[name].css',
+  }),
   new EnvironmentPlugin(['NODE_ENV']),
 
   new DefinePlugin({
@@ -32,6 +35,9 @@ const plugins = [
       to: 'data',
     },
     {
+      from: 'src/CNAME',
+    },
+    {
       flatten: true,
       from: 'src/assets/images',
       to: 'assets',
@@ -39,10 +45,15 @@ const plugins = [
   ]),
 ];
 
+const plugins = process.env.NODE_ENV === 'production' ? [
+  ...basePlugins,
+] : basePlugins;
 module.exports = {
-
+  mode: process.env.NODE_ENV,
+  optimization: {
+    minimizer: [new TerserPlugin()],
+  },
   plugins,
-
   // Load this and everythning it cares about
   entry: `${__dirname}/src/main.js`,
 
@@ -58,31 +69,30 @@ module.exports = {
     rules: [
       // If it's a .js file not in node_modules, use the babel-loader
       {
-        test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+        test: /\.js$/,
       },
       // If it's a .scss file
       {
         test: /\.scss$/,
-        loader: ExtractPlugin.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true,
-              },
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
             },
-            'resolve-url-loader',
-            {
-              loader: 'sass-loader',
-              options: {
-                includePaths: [`${__dirname}/src/style`],
-                sourceMap: true,
-              },
+          },
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [`${__dirname}/src/style`],
+              sourceMap: true,
             },
-          ],
-        }),
+          },
+        ],
       },
       {
         test: /\.(woff|woff2|ttf|eot|glyph|\.svg)$/,
