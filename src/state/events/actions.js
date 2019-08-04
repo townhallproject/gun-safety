@@ -1,9 +1,9 @@
 import moment from 'moment';
-import {includes,} from 'lodash';
+import { includes } from 'lodash';
 
 import getData from '../../logics/getData';
 
-import { firebaseUrl, districtsToInclude } from '../constants';
+import { firebaseUrl, districtsToInclude, statesToInclude, senatorsToInclude } from '../constants';
 
 import TownHall from './model';
 
@@ -18,8 +18,17 @@ export const setFeaturesHome = featuresHome => ({
 });
 
 const include = (event) => {
-  if (!includes(districtsToInclude, `${event.state}-${Number(event.district)}`)) {
-    return false;
+  if (event.chamber === 'lower') {
+    if (!includes(districtsToInclude, `${event.state}-${Number(event.district)}`)) {
+      return false;
+    }
+  } else {
+    if (!includes(statesToInclude, event.state)) {
+      return false;
+    }
+    if (!includes(senatorsToInclude, event.displayName.split(' ')[1])) {
+      return false;
+    }
   }
   if (event.iconFlag === 'in-person') {
     return event.meetingType !== 'DC Event';

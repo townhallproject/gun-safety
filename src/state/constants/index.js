@@ -53,4 +53,27 @@ export const districtsToInclude = ['AZ-01',
   'VA-7',
   'VA-10',
   'WA-8',
-  'WI-3' ];
+  'WI-3'];
+
+export const statesToInclude = [
+  'AZ',
+  'CO',
+  'GA',
+  'IA',
+  'KY',
+  'ME',
+  'NC',
+  'SC',
+  'TX',
+];
+
+export const senatorsToInclude = [ 'McSally',
+     'Gardner',
+     'Perdue',
+     'Ernst',
+     'McConnell',
+     'Collins',
+     'Tillis',
+     'Graham',
+     'Cornyn',
+]
