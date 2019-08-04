@@ -1,15 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import superagent from 'superagent';
-import moment from 'moment';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
-import faFacebookSquare from '@fortawesome/fontawesome-free-brands/faFacebookSquare';
-import faTwitterSquare from '@fortawesome/fontawesome-free-brands/faTwitterSquare';
-import faEnvelope from '@fortawesome/fontawesome-free-solid/faEnvelope';
-import faExternalLinkSquareAlt from '@fortawesome/fontawesome-free-solid/faExternalLinkSquareAlt';
 import { Card } from 'antd';
-import { indivisibleUrl } from '../state/constants';
 
 /* eslint-disable */
 require('style-loader!css-loader!antd/es/card/style/index.css');
@@ -70,18 +62,12 @@ class TableCell extends React.Component {
 }
 
 TableCell.propTypes = {
-  color: PropTypes.string,
   iconName: PropTypes.string,
   item: PropTypes.shape({}).isRequired,
-  refcode: PropTypes.string,
-  selectItem: PropTypes.func,
 };
 
 TableCell.defaultProps = {
-  color: '',
   iconName: '',
-  refcode: '',
-  selectItem: () => {},
 };
 
 export default TableCell;

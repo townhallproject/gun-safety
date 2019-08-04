@@ -14,9 +14,7 @@ export const getCurrentCandidateNames = createSelector([getEvents], events => un
 
 export const getEventsFilteredByCandidateArray = createSelector(
   [getEvents, getSelectedNames],
-  (allEvents, namesToInclude) => {
-    return filter(allEvents, o => includes(namesToInclude, o.meetingType));
-  },
+  (allEvents, namesToInclude) => filter(allEvents, o => includes(namesToInclude, o.meetingType)),
 );
 
 const getEventsInState = createSelector(

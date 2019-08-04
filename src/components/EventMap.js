@@ -5,16 +5,11 @@ import geoViewport from '@mapbox/geo-viewport';
 import {
   find,
   filter,
-  map,
 } from 'lodash';
 import bboxes from '../data/bboxes';
 import Point from '../logics/features';
-import states from '../data/states';
 
 import L from '../utils/leaflet-ajax/src';
-
-import MapInset from '../components/MapInset';
-import { startSetEvents } from '../state/events/actions';
 
 const hasEventsColor = '#1b2455';
 const maxBounds = [
@@ -38,8 +33,6 @@ class MapView extends React.Component {
     this.continentalView = this.continentalView.bind(this);
     // this.makeZoomToNationalButton = this.makeZoomToNationalButton.bind(this);
     this.state = {
-      alaskaItems: filter(this.props.items, { state: 'AK' }),
-      hawaiiItems: filter(this.props.items, { state: 'HI' }),
       inset: !props.selectedUsState,
       popoverColor: 'popover-general-icon',
     };

@@ -1,5 +1,5 @@
 // Third-party
-@import "./vendor/mapbox-gl";
+// @import "./vendor/mapbox-gl";
 
 @import './mixins/all';
 
@@ -16,7 +16,6 @@
 @import "./components/footer";
 @import "./components/map";
 @import "./components/main-dashboard";
-@import "./components/popover";
 @import "./components/event-list";
 @import "./components/event-cell";
 @import "./components/side-bar";

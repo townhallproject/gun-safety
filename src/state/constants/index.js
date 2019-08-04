@@ -67,13 +67,13 @@ export const statesToInclude = [
   'TX',
 ];
 
-export const senatorsToInclude = [ 'McSally',
-     'Gardner',
-     'Perdue',
-     'Ernst',
-     'McConnell',
-     'Collins',
-     'Tillis',
-     'Graham',
-     'Cornyn',
-]
+export const senatorsToInclude = ['McSally',
+  'Gardner',
+  'Perdue',
+  'Ernst',
+  'McConnell',
+  'Collins',
+  'Tillis',
+  'Graham',
+  'Cornyn',
+];

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Col, 
+  Col,
   Input,
   Row,
 } from 'antd';

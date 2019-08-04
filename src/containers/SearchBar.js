@@ -15,7 +15,6 @@ import {
 import { getCurrentCandidateNames } from '../state/events/selectors';
 
 import SearchInput from '../components/SearchInput';
-import DistanceFilter from '../components/DistanceSlider';
 import CandidateNameFilters from '../components/CandidateNameFilters';
 /* eslint-disable */
 require('style-loader!css-loader!antd/es/radio/style/index.css');
@@ -102,11 +101,6 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    const {
-      distance,
-      mapType,
-      searchType,
-    } = this.props;
     return (
       <div className="search-bar">
         <Row type="flex" justify="space-around" align="middle" className="search-bar-row">
@@ -115,15 +109,7 @@ class SearchBar extends React.Component {
               submitHandler={this.searchHandler}
             />
           </Col>
-          {/* <Col>
-            {this.renderFilterBar()}
-          </Col> */}
         </Row>
-        {/* <DistanceFilter
-          changeHandler={this.distanceHandler}
-          distance={distance}
-          hidden={searchType === 'district'}
-        /> */}
       </div>
     );
   }

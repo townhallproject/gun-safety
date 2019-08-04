@@ -27,17 +27,4 @@
   .town-hall, .town-hall-icon {
     @include cell($town-hall);
   }
-
-  .dark-green, .dark-green-icon {
-    @include cell($dark-green);
-  }
-  .dark-purple, .dark-purple-icon {
-    @include cell($dark-purple);
-  }
-  .dark-orange, .dark-orange-icon {
-    @include cell($dark-orange);
-  }
-  .circle-stroked-15-grey {
-    @include cell($brand-primary);
-  }
 }

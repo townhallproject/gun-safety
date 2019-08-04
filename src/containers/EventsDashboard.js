@@ -1,5 +1,5 @@
 /* globals location */
-import { Layout, Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 
 import React from 'react';
 import { connect } from 'react-redux';
@@ -25,15 +25,8 @@ import MapView from '../components/EventMap';
 import SearchBar from './SearchBar';
 import SideBar from './SideBar';
 
-const {
-  Header,
-  Content,
-  Footer,
-} = Layout;
-
 /* eslint-disable */
-require('style-loader!css-loader!antd/es/menu/style/index.css');
-require('style-loader!css-loader!antd/es/layout/style/index.css');
+require('style-loader!css-loader!antd/es/grid/style/index.css');
 /* eslint-enable */
 
 class EventsDashboard extends React.Component {
