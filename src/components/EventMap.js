@@ -178,7 +178,6 @@ class MapView extends React.Component {
     function hasSenateEvents(state) {
       return find(items, (item) => {
         if (item.chamber === 'upper') {
-          console.log(item.chamber, item.state)
           return item.state === state;
         }
       });
