@@ -214,17 +214,39 @@ p {
   flex-flow: row wrap;
 }
 
-.main-container .header {
-  padding: 20px;
-  width: 100%;
+.main-container .learn-more {
+  position: absolute;
+  right: 16px;
+  text-align: center;
+  z-index: 3000;
 }
 
-.main-container .header h3 {
-  font-size: 2em;
+.main-container .ant-affix {
+  color: #171c4b;
+  background: white;
+  border-radius: 3px;
+  padding: 5px;
+  height: initial !important;
+  margin-right: 5px;
+  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
+}
+
+.main-container .ant-affix a {
+  padding: 5px;
+}
+
+.main-container .header {
+  padding: 85px;
+  width: 100%;
+  background: #171c4b;
+  text-align: center;
+}
+
+.main-container .header h1 {
   margin: 0;
   text-transform: uppercase;
   font-family: 'Oswald';
-  color: #d5432f;
+  color: white;
 }
 
 .main-container h1 {
@@ -265,27 +287,42 @@ p {
   background-color: #1faaf1;
 }
 
-#events-list .town-hall,
-#events-list .town-hall-icon {
+#events-list .D {
   border: 1px solid #1faaf1;
   margin-bottom: 15px;
   padding: 0;
   box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
 }
 
-#events-list .town-hall .ant-card-head,
-#events-list .town-hall-icon .ant-card-head {
+#events-list .D .ant-card-head {
   background-color: #1faaf1;
 }
 
-#events-list .town-hall .ant-card-head .ant-card-head-title,
-#events-list .town-hall-icon .ant-card-head .ant-card-head-title {
+#events-list .D .ant-card-head .ant-card-head-title {
   color: #ffffff;
 }
 
-#events-list .town-hall .ant-card-head .rsvp-button,
-#events-list .town-hall-icon .ant-card-head .rsvp-button {
+#events-list .D .ant-card-head .rsvp-button {
   color: #1faaf1;
+}
+
+#events-list .R {
+  border: 1px solid #d5432f;
+  margin-bottom: 15px;
+  padding: 0;
+  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
+}
+
+#events-list .R .ant-card-head {
+  background-color: #d5432f;
+}
+
+#events-list .R .ant-card-head .ant-card-head-title {
+  color: #ffffff;
+}
+
+#events-list .R .ant-card-head .rsvp-button {
+  color: #d5432f;
 }
 
 .event-cell {
@@ -384,11 +421,19 @@ p {
 
 .search-bar {
   flex: 1 100%;
-  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 0px 6px 0 #B3B3B3;
+  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
   z-index: 99;
   padding: 0.5vw;
   display: flex;
   flex-flow: row wrap;
+}
+
+.search-bar .title {
+  color: #171c4b;
+  font-size: 3.2em;
+  line-height: 1;
+  margin-bottom: 10px;
+  font-family: 'Oswald', sans-serif;
 }
 
 .search-bar .ant-input-search.ant-input-affix-wrapper {
