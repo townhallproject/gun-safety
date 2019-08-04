@@ -233,7 +233,7 @@ class MapView extends React.Component {
       const chamber = eventInfo.district ? `(${eventInfo.state}-${Number(eventInfo.district)})` : `(${eventInfo.state})`;
       return `<div class="text-info map-popup">
                 <h4 class="mapbox-popup-title">
-                  </span>${eventInfo.displayName} ${chamber}</h4>
+                  </span>${eventInfo.displayName} ${chamber} ${eventInfo.party}</h4>
                     ${eventInfo.venue ? `<p>${eventInfo.venue}</p>` : ''}
                 <span>
                   ${eventInfo.repeatingEvent ? `${eventInfo.repeatingEvent}` : `${eventInfo.time ? `${eventInfo.date} at ${eventInfo.time}` : ''}`}

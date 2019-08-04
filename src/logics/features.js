@@ -18,6 +18,7 @@ class Point {
       title: townHall.eventName,
       url: townHall.url || null,
       venue: townHall.Location || '',
+      party: townHall.party,
     };
   }
 }
