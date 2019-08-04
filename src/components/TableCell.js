@@ -31,12 +31,12 @@ class TableCell extends React.Component {
       item,
       iconName,
     } = this.props;
-    const chamber = item.district ? <div>{item.state}-{Number(item.district)}</div> : <div>{item.state}}</div>
+    const chamber = item.district ? <div>{item.state}-{Number(item.district)}</div> : <div>{item.state}</div>;
     return (
       <Card
-        className={`event-cell ${iconName}`}
+        className={`event-cell ${iconName}  ${item.party}`}
         key={`${item.id}`}
-        title={[item.displayName, chamber]}
+        title={[item.displayName, chamber, item.party]}
       >
         <ul>
           {item.eventName}

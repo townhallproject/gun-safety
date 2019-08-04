@@ -24,7 +24,10 @@
     background-color: $brand-primary;
   }
 
-  .town-hall, .town-hall-icon {
-    @include cell($town-hall);
+  .D {
+    @include cell($brand-primary);
+  }
+  .R {
+    @include cell($brand-secondary);
   }
 }

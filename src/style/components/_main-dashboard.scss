@@ -2,15 +2,34 @@
   position: relative;
   display: flex;
   flex-flow: row wrap;
+  .learn-more {
+    position: absolute;
+    right: 16px;
+    text-align: center;
+    z-index: 3000;
+  }
+  .ant-affix {
+    color: $dark-text;
+    background: white;
+    border-radius: 3px;
+    padding: 5px;
+    height: initial!important;
+    margin-right: 5px;
+    @include box-3d;
+    a {
+      padding: 5px;
+    }
+  }
   .header {
-    padding: 20px;
+    padding: 85px;
     width: 100%;
-    h3 {
-      font-size: 2em;
+    background: $dark-text;
+    text-align: center;
+    h1 {
       margin: 0;
       text-transform: uppercase;
       font-family: 'Oswald';
-      color: $brand-secondary;
+      color: white;
     }
   }
   h1 {

@@ -1,5 +1,5 @@
 /* globals location */
-import { Row, Col } from 'antd';
+import { Affix, Button } from 'antd';
 
 import React from 'react';
 import { connect } from 'react-redux';
@@ -118,17 +118,18 @@ class EventsDashboard extends React.Component {
     }
     return (
       <div className="events-container main-container">
-        <Row className="header" type="flex" justify="space-between" align="middle">
-          <Col><h3 style={{display: "inline-block"}}>Stand Up for Safer Gun Laws</h3></Col>
-          <Col>
-            <a
+        <Affix offsetTop={10} style={{position: 'absolute', height: '80px' }} className="learn-more">
+          <a
               target="_blank"
-              rel="noopener noreferrer"
               href="https://docs.google.com/document/d/1Go1GsYldM9iRLzpvQP1GZVjRXBjJ7Qcm8Xk_ku86lEQ/edit#"
-            >Learn more at the Gun Violence Recess Toolkit
-            </a>
-          </Col>
-        </Row>
+            >Learn more at the<br/> <strong>Gun Violence Recess Toolkit</strong>
+          </a>
+        </Affix>
+        <div className="header">
+
+          <h1>Stand Up for Safer Gun Laws</h1>
+  
+        </div>
         <SearchBar mapType="event" />
         {this.renderMap()}
         <SideBar

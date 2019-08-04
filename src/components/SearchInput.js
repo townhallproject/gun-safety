@@ -29,10 +29,10 @@ class SearchBar extends React.Component {
   render() {
     return (
       <Row type="flex" align="middle" justify="space-around">
-        <Col span={12}>
-          <h1 className="bold">Find an event with your representatives</h1><h2 className="sub-title">and tell them why gun safety matters to you:</h2>
+        <Col span={11}>
+          <h2 className="title">Find an event with your representatives</h2><h2 className="sub-title">and tell them why gun safety matters to you:</h2>
         </Col>
-        <Col span={8}>
+        <Col span={7}>
           <Search
             placeholder="zipcode or state"
             onSearch={value => this.handleSubmit(value)}

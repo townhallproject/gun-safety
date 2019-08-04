@@ -29,6 +29,9 @@ const include = (event) => {
     if (!includes(senatorsToInclude, event.displayName.split(' ')[1])) {
       return false;
     }
+    if (event.iconFlag === 'in-person' || event.iconFlag === 'tele') {
+      return event.meetingType !== 'DC Event';
+    }
   }
   if (event.iconFlag === 'in-person') {
     return event.meetingType !== 'DC Event';

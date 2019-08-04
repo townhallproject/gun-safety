@@ -135,7 +135,7 @@ class MapInset extends React.Component {
 
   addLayer(featuresHome) {
     const myIcon = L.icon({
-      iconUrl: './assets/campaign.svg',
+      iconUrl: `./assets/d-icon.svg`,
       iconSize: [24, 24],
       iconAnchor: [12, 24],
       popupAnchor: [-3, -76],
