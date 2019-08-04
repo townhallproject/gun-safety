@@ -174,31 +174,58 @@ class MapView extends React.Component {
     return featuresHome;
   }
 
+  addStateColorLayer(items) {
+    function hasSenateEvents(state) {
+      return find(items, (item) => {
+        if (item.chamber === 'upper') {
+          console.log(item.chamber, item.state)
+          return item.state === state;
+        }
+      });
+    }
+
+    function setStateStyle(state) {
+      const {
+        properties,
+      } = state;
+      return {
+        color: hasSenateEvents(properties.ABR) ? '#fff' : 'transparent',
+        fillColor: hasSenateEvents(properties.ABR) ? hasEventsColor : 'transparent',
+        fillOpacity: 1,
+        opacity: 1,
+        weight: hasSenateEvents(properties.ABR) ? 2 : 0,
+      };
+    }
+    return new L.GeoJSON.AJAX('data/states.geojson', {
+      style(state) {
+        return setStateStyle(state);
+      },
+    });
+  }
+
   addColorLayer(items) {
     function hasEvents(district) {
-      return find(items, item => {
-        return `${item.state}-${Number(item.district)}` === district;
-      })
+      return find(items, item => `${item.state}-${Number(item.district)}` === district);
     }
 
     function setDistrictStyle(state) {
       const { properties } = state;
-      const district = Number(properties.GEOID.substring(2));
+      const districtNo = Number(properties.GEOID.substring(2));
+      const district = `${properties.ABR}-${districtNo}`;
       return {
-        color: hasEvents(`${properties.ABR}-${district}`) ? '#fff' : 'transparent',
-        fillColor: hasEvents(`${properties.ABR}-${district}`) ? hasEventsColor : 'transparent',
+        color: hasEvents(district) ? '#fff' : 'transparent',
+        fillColor: hasEvents(district) ? hasEventsColor : 'transparent',
         fillOpacity: 1,
         opacity: 1,
         weight: hasEvents(`${properties.ABR}-${district}`) ? 2 : 0,
       };
     }
 
-    this.stateColorLayer = new L.GeoJSON.AJAX('data/districts.geojson', {
+    return new L.GeoJSON.AJAX('data/districts.geojson', {
       style(state) {
         return setDistrictStyle(state);
       },
     });
-    this.stateColorLayer.addTo(this.map);
   }
 
   addLayer(featuresHome) {
@@ -210,11 +237,11 @@ class MapView extends React.Component {
     });
     // Set map controls
     function showTooltip({ properties }) {
-      console.log(properties)
       const eventInfo = properties;
+      const chamber = eventInfo.district ? `(${eventInfo.state}-${Number(eventInfo.district)})` : `(${eventInfo.state})`;
       return `<div class="text-info map-popup">
                 <h4 class="mapbox-popup-title">
-                  </span>${eventInfo.displayName} (${eventInfo.state}-${Number(eventInfo.district)})</h4>
+                  </span>${eventInfo.displayName} ${chamber}</h4>
                     ${eventInfo.venue ? `<p>${eventInfo.venue}</p>` : ''}
                 <span>
                   ${eventInfo.repeatingEvent ? `${eventInfo.repeatingEvent}` : `${eventInfo.time ? `${eventInfo.date} at ${eventInfo.time}` : ''}`}
@@ -238,7 +265,7 @@ class MapView extends React.Component {
         };
       },
     });
-    this.markerLayer.addTo(this.map);
+    return this.markerLayer;
   }
 
   handleReset() {
@@ -287,28 +314,41 @@ class MapView extends React.Component {
 
     const continental = this.continentalView();
     const { center } = continental;
+    this.baseLayer = new L.GeoJSON.AJAX('data/districts.geojson', {
+      style(state) {
+        return setStyle(state);
+      },
+    });
+    this.districtLayer = this.addColorLayer(items);
+    this.stateColorLayer = this.addStateColorLayer(items);
+    this.markerLayer = this.addLayer(featuresHome);
     this.map = L.map('map', {
       attributionControl: false,
       center: [center[1], center[0]],
       zoomControl: true,
       scrollWheelZoom: false,
+      layers: [this.baseLayer, this.stateColorLayer, this.districtLayer, this.markerLayer],
     });
     this.map.fitBounds(maxBounds);
     this.makeZoomToNationalButton();
     this.resizeListener();
-    this.stateLayer = new L.GeoJSON.AJAX('data/districts.geojson', {
-      style(state) {
-        return setStyle(state);
-      },
-    });
+    const baseMaps = {
+      USA: this.baseLayer,
+    };
 
-    this.stateLayer.addTo(this.map).bringToBack();
-    this.addColorLayer(items);
-    this.addLayer(featuresHome);
+    const overlayMaps = {
+      Districts: this.districtLayer,
+      States: this.stateColorLayer,
+      Events: this.markerLayer,
+    };
+    L.control.layers(baseMaps, overlayMaps).addTo(this.map);
+
+    // this.stateLayer.addTo(this.map).bringToBack();
+    // this.addColorLayer(items);
+    // this.addLayer(featuresHome);
   }
 
   render() {
-
     return (
       <React.Fragment>
         <div id="map" className={this.state.popoverColor} ref={(ref) => { this.mapContainer = ref; }}>
