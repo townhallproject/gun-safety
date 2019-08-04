@@ -20,6 +20,7 @@ const plugins = [
   new EnvironmentPlugin(['NODE_ENV']),
 
   new DefinePlugin({
+    NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     __API_URL__: JSON.stringify(process.env.API_URL),
     __AUTH_URL__: JSON.stringify(process.env.AUTH_URL),
     __DEBUG__: JSON.stringify(!production),
