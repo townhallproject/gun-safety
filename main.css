@@ -51,9 +51,9 @@ h3 {
 }
 
 p {
-  font-size: 0.85em;
   margin: 10px;
   text-align: left;
+  color: #e8e8e8;
 }
 
 .dash-title {
@@ -219,6 +219,11 @@ p {
   right: 16px;
   text-align: center;
   z-index: 3000;
+  transition: all 0.2s;
+}
+
+.main-container .learn-more.min {
+  right: 16px;
 }
 
 .main-container .ant-affix {
@@ -227,8 +232,10 @@ p {
   border-radius: 3px;
   padding: 5px;
   height: initial !important;
+  width: initial !important;
   margin-right: 5px;
-  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
+  right: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .main-container .ant-affix a {
@@ -243,7 +250,6 @@ p {
 }
 
 .main-container .header h1 {
-  margin: 0;
   text-transform: uppercase;
   font-family: 'Oswald';
   color: white;
