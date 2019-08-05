@@ -1,6 +1,4 @@
 /* globals location */
-import { Affix, Button } from 'antd';
-
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -24,6 +22,7 @@ import MapView from '../components/EventMap';
 import FloatingIcon from '../components/FloatingInfo';
 import SearchBar from './SearchBar';
 import SideBar from './SideBar';
+import Header from '../components/Header';
 
 /* eslint-disable */
 require('style-loader!css-loader!antd/es/grid/style/index.css');
@@ -119,11 +118,7 @@ class EventsDashboard extends React.Component {
     return (
       <div className="events-container main-container">
         <FloatingIcon />
-        <div className="header">
-
-          <h1>Stand Up for Safer Gun Laws</h1>
-  
-        </div>
+        <Header />
         <SearchBar mapType="event" />
         {this.renderMap()}
         <SideBar
