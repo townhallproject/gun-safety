@@ -7,6 +7,11 @@
     right: 16px;
     text-align: center;
     z-index: 3000;
+    transition: all 0.2s;
+  }
+  .learn-more.min{
+    right: 16px;
+
   }
   .ant-affix {
     color: $dark-text;
@@ -14,8 +19,10 @@
     border-radius: 3px;
     padding: 5px;
     height: initial!important;
+    width: initial!important;
     margin-right: 5px;
-    @include box-3d;
+    right: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     a {
       padding: 5px;
     }
