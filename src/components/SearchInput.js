@@ -28,11 +28,11 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <Row type="flex" align="middle" justify="space-around">
-        <Col span={11}>
+      <Row type="flex" align="middle" justify="space-around" gutter={16}>
+        <Col sm={{ span: 11 }} xs={{span: 24 }}>
           <h2 className="title">Find an event with your representatives</h2><h2 className="sub-title">and tell them why gun safety matters to you:</h2>
         </Col>
-        <Col span={7}>
+        <Col sm={{ span: 7}} xs={{ span: 24 }}>
           <Search
             size="large"
             placeholder="zipcode or state"

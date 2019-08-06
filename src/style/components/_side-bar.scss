@@ -51,5 +51,6 @@
 @media all and (max-width: $tablet-breakpoint) {
   .side-bar-container {
     flex: 1 100%;
+    height: initial;
   }
 }
