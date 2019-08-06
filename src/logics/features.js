@@ -13,12 +13,12 @@ class Point {
       district: townHall.district,
       icon: townHall.iconFlag,
       id: townHall.id || null,
+      party: townHall.party,
       state: townHall.state || null,
       time: townHall.time || null,
       title: townHall.eventName,
       url: townHall.url || null,
       venue: townHall.Location || '',
-      party: townHall.party,
     };
   }
 }
