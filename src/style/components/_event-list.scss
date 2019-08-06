@@ -26,8 +26,14 @@
 
   .D {
     @include cell($brand-primary);
+    .ant-card-head {
+      border-bottom: 1px solid $brand-primary;
+    }
   }
   .R {
     @include cell($brand-secondary);
+    .ant-card-head {
+      border-bottom: 1px solid $brand-secondary;
+    }
   }
 }
