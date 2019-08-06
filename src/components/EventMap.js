@@ -183,7 +183,7 @@ class MapView extends React.Component {
       return {
         color: hasSenateEvents(properties.ABR) ? '#fff' : 'transparent',
         fillColor: hasSenateEvents(properties.ABR) ? hasEventsColor : 'transparent',
-        fillOpacity: 1,
+        fillOpacity: 0.5,
         opacity: 1,
         weight: hasSenateEvents(properties.ABR) ? 2 : 0,
       };
@@ -209,7 +209,7 @@ class MapView extends React.Component {
         fillColor: hasEvents(district) ? hasEventsColor : 'transparent',
         fillOpacity: 1,
         opacity: 1,
-        weight: hasEvents(`${properties.ABR}-${district}`) ? 2 : 0,
+        weight: hasEvents(district) ? 2 : 0,
       };
     }
 
@@ -222,7 +222,7 @@ class MapView extends React.Component {
 
   addLayer(featuresHome) {
     const myIcon = L.icon({
-      iconUrl: './assets/campaign.svg',
+      iconUrl: './assets/d-icon.svg',
       iconSize: [24, 24],
       iconAnchor: [12, 24],
       popupAnchor: [-3, -76],
@@ -327,10 +327,10 @@ class MapView extends React.Component {
     const baseMaps = {
       USA: this.baseLayer,
     };
-
+    
     const overlayMaps = {
-      Districts: this.districtLayer,
       States: this.stateColorLayer,
+      Districts: this.districtLayer,
       Events: this.markerLayer,
     };
     L.control.layers(baseMaps, overlayMaps).addTo(this.map);
