@@ -34,6 +34,7 @@ class SearchBar extends React.Component {
         </Col>
         <Col span={7}>
           <Search
+            size="large"
             placeholder="zipcode or state"
             onSearch={value => this.handleSubmit(value)}
           />
