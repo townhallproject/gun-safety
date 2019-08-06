@@ -249,6 +249,14 @@ p {
   text-align: center;
 }
 
+.main-container .header a {
+  color: #171c4b;
+}
+
+.main-container .header a :hover {
+  color: #111537;
+}
+
 .main-container .header h1 {
   text-transform: uppercase;
   font-family: 'Oswald';
@@ -429,7 +437,7 @@ p {
   flex: 1 100%;
   box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
   z-index: 99;
-  padding: 0.5vw;
+  padding: 1vw;
   display: flex;
   flex-flow: row wrap;
 }
