@@ -118,3 +118,23 @@ select {
     background-color: $brand-primary;
   }
 }
+
+.affix-search-bar {
+  .ant-affix {
+    z-index: 3;
+    .search-bar {
+      box-shadow: none;
+    }
+  }
+  .search-bar {
+    .sub-title {
+      padding: 0 10px;
+      font-size: 1.5em;
+    }
+    .title {
+      padding: 10px 10px 0px 10px;
+      font-size: 1.8em;
+
+    }
+  }
+}

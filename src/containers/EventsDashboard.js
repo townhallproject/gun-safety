@@ -23,6 +23,7 @@ import FloatingIcon from '../components/FloatingInfo';
 import SearchBar from './SearchBar';
 import SideBar from './SideBar';
 import Header from '../components/Header';
+import { Affix } from 'antd';
 
 /* eslint-disable */
 require('style-loader!css-loader!antd/es/grid/style/index.css');
@@ -105,6 +106,15 @@ class EventsDashboard extends React.Component {
     />);
   }
 
+  renderSearchBar() {
+    if (window.innerWidth <= 480) {
+      return(<Affix className="affix-search-bar">
+        <SearchBar mapType = "event" />
+      </Affix>)
+    }
+    return (<SearchBar mapType = "event" />)
+  }
+
   render() {
     const {
       center,
@@ -119,7 +129,7 @@ class EventsDashboard extends React.Component {
       <div className="events-container main-container">
         <FloatingIcon />
         <Header />
-        <SearchBar mapType="event" />
+        {this.renderSearchBar()}
         {this.renderMap()}
         <SideBar
           items={eventsNearSearchLocation}
