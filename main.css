@@ -250,7 +250,8 @@ p {
 }
 
 .main-container .header a {
-  color: #171c4b;
+  color: white;
+  text-decoration: underline;
 }
 
 .main-container .header a :hover {
@@ -320,6 +321,10 @@ p {
   color: #1faaf1;
 }
 
+#events-list .D .ant-card-head {
+  border-bottom: 1px solid #1faaf1;
+}
+
 #events-list .R {
   border: 1px solid #d5432f;
   margin-bottom: 15px;
@@ -337,6 +342,10 @@ p {
 
 #events-list .R .ant-card-head .rsvp-button {
   color: #d5432f;
+}
+
+#events-list .R .ant-card-head {
+  border-bottom: 1px solid #d5432f;
 }
 
 .event-cell {
