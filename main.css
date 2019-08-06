@@ -384,7 +384,7 @@ p {
   flex-direction: column;
   display: flex;
   align-items: stretch;
-  height: 560px;
+  height: 45vw;
   width: 27.5vw;
   flex: 1 auto;
   order: 1;
