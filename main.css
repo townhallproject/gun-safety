@@ -430,6 +430,7 @@ p {
 @media all and (max-width: 778px) {
   .side-bar-container {
     flex: 1 100%;
+    height: initial;
   }
 }
 
@@ -555,6 +556,24 @@ select {
 
 .ant-tag-checkable-checked.town-hall-icon {
   background-color: #1faaf1;
+}
+
+.affix-search-bar .ant-affix {
+  z-index: 3;
+}
+
+.affix-search-bar .ant-affix .search-bar {
+  box-shadow: none;
+}
+
+.affix-search-bar .search-bar .sub-title {
+  padding: 0 10px;
+  font-size: 1.5em;
+}
+
+.affix-search-bar .search-bar .title {
+  padding: 10px 10px 0px 10px;
+  font-size: 1.8em;
 }
 
 
