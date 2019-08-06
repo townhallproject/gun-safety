@@ -2,7 +2,7 @@ export default class TownHall {
   constructor(props) {
     this.displayName = props.displayName;
     this.address = props.address;
-    this.party = props.party;
+    this.party = props.party[0];
     this.date = props.dateString;
     this.time = props.Time;
     this.id = props.eventId;
