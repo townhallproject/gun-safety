@@ -234,7 +234,7 @@ class MapView extends React.Component {
       return `<div class="text-info map-popup">
                 <h4 class="mapbox-popup-title">
                   </span>${eventInfo.displayName} ${chamber} ${eventInfo.party}</h4>
-                    ${eventInfo.venue ? `<p>${eventInfo.venue}</p>` : ''}
+                    ${eventInfo.venue ? `<h4>${eventInfo.venue}</h4>` : ''}
                 <span>
                   ${eventInfo.repeatingEvent ? `${eventInfo.repeatingEvent}` : `${eventInfo.time ? `${eventInfo.date} at ${eventInfo.time}` : ''}`}
                 </span><br>
