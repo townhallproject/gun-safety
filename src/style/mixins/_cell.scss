@@ -5,6 +5,7 @@
   @include box-3d;
   .ant-card-head {
     background-color: $color;
+    border-bottom: 1px solid $color;
     .ant-card-head-title{
       color: $main-white;
     }

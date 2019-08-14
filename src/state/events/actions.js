@@ -18,23 +18,15 @@ export const setFeaturesHome = featuresHome => ({
 });
 
 const include = (event) => {
+  if (event.meetingType === 'Gun Safety Activist Event') {
+    return true;
+  }
   if (event.chamber === 'lower') {
-    // if (!includes(districtsToInclude, `${event.state}-${Number(event.district)}`)) {
-    //   return false;
-    // }
     if (event.iconFlag === 'in-person') {
       return event.meetingType !== 'DC Event';
     }
-  } else {
-    // if (!includes(statesToInclude, event.state)) {
-    //   return false;
-    // }
-    // if (!includes(senatorsToInclude, event.displayName.split(' ')[1])) {
-    //   return false;
-    // }
-    if (event.iconFlag === 'in-person' || event.iconFlag === 'tele') {
-      return event.meetingType !== 'DC Event';
-    }
+  } else if (event.iconFlag === 'in-person' || event.iconFlag === 'tele') {
+    return event.meetingType !== 'DC Event';
   }
 
   return false;

@@ -220,20 +220,33 @@ class MapView extends React.Component {
     });
   }
 
+  static getIconPath(party) {
+    const mapping = {
+      activism: './assets/activism.svg',
+      d: './assets/d-icon.svg',
+      r: './assets/r-icon.svg',
+    };
+    return mapping[party] || './assets/d-icon.svg';
+  }
+
   addLayer(featuresHome) {
-    const myIcon = L.icon({
-      iconUrl: './assets/d-icon.svg',
+
+    const makeIcon = (party) => L.icon({
+      iconUrl: MapView.getIconPath(party.toLowerCase()),
       iconSize: [24, 24],
       iconAnchor: [12, 24],
       popupAnchor: [-3, -76],
     });
+
     // Set map controls
     function showTooltip({ properties }) {
       const eventInfo = properties;
       const chamber = eventInfo.district ? `(${eventInfo.state}-${Number(eventInfo.district)})` : `(${eventInfo.state})`;
+      const title = eventInfo.party === 'activism' ? `Activism Event ${eventInfo.state}` : `${eventInfo.displayName} ${chamber} ${eventInfo.party}`;
+
       return `<div class="text-info map-popup">
                 <h4 class="mapbox-popup-title">
-                  </span>${eventInfo.displayName} ${chamber} ${eventInfo.party}</h4>
+                  </span>${title}</h4>
                     ${eventInfo.venue ? `<h4>${eventInfo.venue}</h4>` : ''}
                 <span>
                   ${eventInfo.repeatingEvent ? `${eventInfo.repeatingEvent}` : `${eventInfo.time ? `${eventInfo.date} at ${eventInfo.time}` : ''}`}
@@ -248,10 +261,10 @@ class MapView extends React.Component {
     this.markerLayer = L.geoJSON(featuresHome, {
       pointToLayer(geoJsonPoint, latlng) {
         return L.marker(latlng, {
-          icon: myIcon,
+          icon: makeIcon(geoJsonPoint.properties.party),
         }).bindPopup(showTooltip(geoJsonPoint)).openPopup();
       },
-      style(feature) {
+      style() {
         return {
           color: '#f7ed54',
         };
