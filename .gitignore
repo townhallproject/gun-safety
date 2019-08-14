@@ -62,3 +62,5 @@ typings/
 package-lock.json
 build/
 node_modules
+
+.DS_Store
