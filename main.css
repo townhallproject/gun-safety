@@ -311,6 +311,7 @@ p {
 
 #events-list .D .ant-card-head {
   background-color: #1faaf1;
+  border-bottom: 1px solid #1faaf1;
 }
 
 #events-list .D .ant-card-head .ant-card-head-title {
@@ -319,10 +320,6 @@ p {
 
 #events-list .D .ant-card-head .rsvp-button {
   color: #1faaf1;
-}
-
-#events-list .D .ant-card-head {
-  border-bottom: 1px solid #1faaf1;
 }
 
 #events-list .R {
@@ -334,6 +331,7 @@ p {
 
 #events-list .R .ant-card-head {
   background-color: #d5432f;
+  border-bottom: 1px solid #d5432f;
 }
 
 #events-list .R .ant-card-head .ant-card-head-title {
@@ -344,8 +342,24 @@ p {
   color: #d5432f;
 }
 
-#events-list .R .ant-card-head {
-  border-bottom: 1px solid #d5432f;
+#events-list .a {
+  border: 1px solid #DB8011;
+  margin-bottom: 15px;
+  padding: 0;
+  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
+}
+
+#events-list .a .ant-card-head {
+  background-color: #DB8011;
+  border-bottom: 1px solid #DB8011;
+}
+
+#events-list .a .ant-card-head .ant-card-head-title {
+  color: #ffffff;
+}
+
+#events-list .a .ant-card-head .rsvp-button {
+  color: #DB8011;
 }
 
 .event-cell {
