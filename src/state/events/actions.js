@@ -1,9 +1,8 @@
 import moment from 'moment';
-import { includes } from 'lodash';
 
 import getData from '../../logics/getData';
 
-import { firebaseUrl, districtsToInclude, statesToInclude, senatorsToInclude } from '../constants';
+import { firebaseUrl } from '../constants';
 
 import TownHall from './model';
 

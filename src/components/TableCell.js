@@ -9,7 +9,6 @@ require('style-loader!css-loader!antd/es/button/style/index.css');
 /* eslint-enable */
 
 class TableCell extends React.Component {
-
   static handlePanelOpen(e) {
     const ele = document.getElementById(e.target.id);
     if (ele.classList.contains('open')) {
@@ -32,8 +31,9 @@ class TableCell extends React.Component {
       iconName,
     } = this.props;
     const chamber = item.district ? <div>{item.state}-{Number(item.district)}</div> : <div>{item.state}</div>;
-    const title = item.meetingType === 'Gun Safety Activist Event' ? ['Activism Event', < br / > , item.state] :
-        [item.displayName, chamber, item.party[0]]
+    const title = item.meetingType === 'Gun Safety Activist Event' ?
+      ['Activism Event', <br />, item.state] :
+      [item.displayName, chamber, item.party[0]];
     return (
       <Card
         className={`event-cell ${iconName}  ${item.party[0]}`}
