@@ -382,21 +382,15 @@ p {
   font-family: 'Roboto', sans-serif;
 }
 
-.event-cell .read-more {
-  transition: max-height 500ms ease-in-out;
-  cursor: pointer;
-  color: #1faaf1;
+.event-cell .card-footer {
+  padding-top: 14px;
+  border-top: 0.5px solid #8492a5;
+  margin-top: 5px;
 }
 
-.event-cell .read-more.closed {
-  max-height: 4em;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.event-cell .read-more.open {
-  max-height: 2000em;
+.event-cell .notes {
+  color: #8492a5;
+  font-size: 0.9em;
 }
 
 .full-width .side-bar-container {
@@ -422,6 +416,14 @@ p {
 
 .side-bar-container a {
   color: #1faaf1;
+}
+
+.side-bar-container .ant-list {
+  width: 100%;
+}
+
+.side-bar-container .ant-spin-container {
+  overflow: hidden;
 }
 
 .side-bar-container .event-count {
