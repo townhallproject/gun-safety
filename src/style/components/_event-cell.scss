@@ -13,19 +13,14 @@
   .ant-card-body{
     @include roboto-regular;
   }
-  .read-more {
-    transition: max-height 500ms ease-in-out;
-    cursor: pointer;
-    color: $brand-primary;
-    &.closed{
-      max-height: 4em;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    &.open{
-      max-height: 2000em;
+  .card-footer {
+    padding-top: 14px;
+    border-top: 0.5px solid $light-text;
+    margin-top: 5px;
+  }
 
-    }
+  .notes {
+    color: $light-text;
+    font-size: 0.9em;
   }
 }
