@@ -46,7 +46,6 @@ class TableCell extends React.Component {
         className={`event-cell ${iconName}  ${item.party[0]}`}
         key={`${item.id}`}
         title={title}
-        // extra={item.url && <a target="_blank" href={item.url}>{item.urlName ? item.urlName : 'More info'}</a>}
       >
         <ul>
           {item.eventName}
@@ -54,16 +53,20 @@ class TableCell extends React.Component {
         <ul>
           <li className="semi-bold">{item.date}</li>
           <li className="semi-bold">{item.time}</li>
+
           <li>{item.address}</li>
           <Paragraph 
             className="notes"
             type="secondary"
-            ellipsis={{ rows: 3, expandable: true }}>
+            ellipsis={{ rows: 3, expandable: true }}
+            >
             {
               item.notes
             }
           </Paragraph>
         </ul>
+        {item.url && <div className="card-footer"><a target="_blank" href={item.url}>{item.urlName ? item.urlName : 'More info'}</a></div>}
+
       </Card>);
   }
 

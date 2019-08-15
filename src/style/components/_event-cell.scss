@@ -13,6 +13,11 @@
   .ant-card-body{
     @include roboto-regular;
   }
+  .card-footer {
+    padding-top: 14px;
+    border-top: 0.5px solid $light-text;
+    margin-top: 5px;
+  }
 
   .notes {
     color: $light-text;
